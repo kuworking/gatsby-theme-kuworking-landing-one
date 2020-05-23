@@ -5,47 +5,53 @@ import { Sunny as Day } from 'emotion-icons/ion-md'
 import { Moon as Night } from 'emotion-icons/fa-regular'
 import { useColorMode } from 'theme-ui'
 import { modes } from '../gatsby-plugin-theme-ui/index'
-import { Switch, Fade } from 'gatsby-theme-kuworking-landing-one'
+import { Switch } from 'gatsby-theme-kuworking-methods'
 
-export const Header = ({ basePath, ShapeButton, typeOfGridButton }) => {
-  return (
+export const Header = ({ basePath, ShapeButton, typeOfGridButton }) => (
+  <PartHeader>
     <Div>
-      <Fade delay="1500" view={false}>
-        <Logo id="init" aria-label="inicio" to={basePath}>
-          <img src="/icons/code.svg" alt="main" />
-        </Logo>
-      </Fade>
+      <Logo id="gtm_home_button" aria-label="inicio" to={basePath}>
+        <img src="/icons/code.svg" alt="main" />
+      </Logo>
 
       <Space />
 
       {typeOfGridButton}
       {ShapeButton}
 
-      <Fade delay="1500" view={false}>
-        <Switch
-          Day={Day}
-          Night={Night}
-          modes={modes}
-          useColorMode={useColorMode}
-          aria-label="Toggle color modes"
-          styles={{
-            width: '30px',
-            height: '30px',
-            borderRadius: '8px',
-            dayColor: '#fffa6a',
-            nightColor: '#5c40719c',
-          }}
-        />
-      </Fade>
+      <Switch
+        Day={Day}
+        Night={Night}
+        modes={modes}
+        useColorMode={useColorMode}
+        aria-label="Toggle color modes"
+        dayColor="#fffa6a"
+        nightColor="#5c40719c"
+        style={{
+          width: '30px',
+          height: '30px',
+          borderRadius: '8px',
+        }}
+      />
     </Div>
-  )
-}
+  </PartHeader>
+)
 
 const q = px => `@media (min-width: ${px}px)`
 // const qq = px => `@media (max-width: ${px}px)`
 
+const PartHeader = styled.header`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  font-weight: 700;
+  font-size: 1em;
+  z-index: 100;
+  position: fixed;
+`
+
 const Div = styled.div`
-  max-width: 800px;
   width: 100%;
   min-height: 40px;
 
